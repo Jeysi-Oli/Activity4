@@ -11,7 +11,7 @@ CREATE TABLE owners(
 
 CREATE TABLE animals (
     animalid INT PRIMARY KEY,
-    name VARCHAR(50),
+    name VARCHAR(50)
     species VARCHAR(50),
     breed VARCHAR(50),
     dateofbirth DATE,
@@ -38,10 +38,14 @@ CREATE TABLE doctors (
     email VARCHAR(100)
 );
 
-CREATE TABLE invoices (
-    invoiceid INT PRIMARY KEY,
-    appointid INT,
-    totalamount NUMERIC(10,2),
-    paymentdate TIME,
-    FOREIGN KEY (appointid) REFERENCES appointments(appointid)
+CREATE TABLE medicalrecords (
+    recordid INT PRIMARY KEY,
+    animalid INT,
+    recorddate TIMESTAMP,
+    doctorid INT,
+    diagnosis TEXT,
+    prescription TEXT,
+    notes TEXT,
+    FOREIGN KEY (animalid) REFERENCES animals(animalid),
+    FOREIGN KEY (doctorid) REFERENCES doctors(doctorid)
 );
